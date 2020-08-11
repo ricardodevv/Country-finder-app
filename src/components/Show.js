@@ -1,40 +1,33 @@
 import React from 'react'
 
-const Show = ({ countries, founded }) => {
-    if (founded.length > 10) {
-      return <div>please especify the country</div>
-    } else if (founded.length === 0) {
-      return (
-        countries.map(el => 
-          <li key={el.name}>{el.name}</li>
-        )    
+const Show = ({ toShow, founded }) => {
+    console.log(toShow)
+    if (founded.length === 0) {
+      return ( 
+          <li>{toShow.name}</li>    
       )
     } else if (founded.length === 1) {
-      return(  
-        founded.map(el =>           
-          <div key={el.name}>
-            <h2>{el.name}</h2>
-            {console.log(el)}
-            Capital: {el.capital} 
+      return (             
+          <div>
+            <h2>{toShow.name}</h2>
+            {console.log(toShow)}
+            Capital: {toShow.capital} 
             <br/>
-            Population: {el.population}
+            Population: {toShow.population}
             <br/>
             <h3>Languages</h3>
-            <ul>
-              {el.languages.map(lang => 
-                <li key={lang.name}>{lang.name}</li>
-              )} 
+            <ul> 
+              {toShow.languages.map(lang =>
+                <li>{lang.name}</li>
+              )}
             </ul>
-            <img src={el.flag} alt='flag'></img>
+            <img src={toShow.flag} alt='flag'></img>
           </div>
         )
-      )
     } else {
-      return (
-        founded.map(el => 
-          <li key={el.name}>{el.name}</li>
+      return ( 
+          <li>{toShow.name}</li>
         )
-      )
     }    
   }
 
