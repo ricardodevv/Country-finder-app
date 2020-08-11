@@ -35,7 +35,7 @@ const App = () => {
  
   console.log('founded', founded)
   console.log('render', countries.length, 'countries')
-  
+  console.log(founded.length)
   return (
     <div>
       <h1>Countries Finder</h1>
