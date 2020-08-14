@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import axios from 'axios'
 import Filter from './components/Filter'
-import Show from './components/Show'
+import UnderTen from './components/UnderTen'
 
 const App = () => {
   const [ countries, setCountries ] = useState([])
@@ -28,21 +28,22 @@ const App = () => {
     setFounded(findCountries(search))
   }
 
-  /*const toDisplay = founded.length === 0 
+  const toDisplay = founded.length === 0 
   ? countries
   : founded
-  */
- 
-  console.log('founded', founded)
+  
+  /*console.log('founded', founded)
   console.log('render', countries.length, 'countries')
   console.log(founded.length)
+  */
+
   return (
     <div>
       <h1>Countries Finder</h1>
       <Filter value={search} setSearch={setSearch} handleSearch={handleSearch} />
       <h2>Countries</h2>
-      <div> 
-        <Show countries={countries} founded={founded} />        
+      <div>
+      <UnderTen toDisplay={toDisplay} founded={founded}/>     
       </div>
     </div>
   )
