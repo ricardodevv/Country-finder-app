@@ -54,5 +54,4 @@ const Show = ({ countries, founded }) => {
     } 
   }
 
-  
 export default Show
