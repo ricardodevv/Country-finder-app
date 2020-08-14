@@ -1,17 +1,11 @@
-import React from 'react'
+import React, { useState }from 'react'
 
 const Show = ({ countries, founded }) => {
-    if (founded.length > 10) {
-      return <div>please especify the country</div>
-    } else if (founded.length === 0) {
+  const [ button, setButton ] = useState(false)   
+
+    const showOnly = (props) => {
       return (
-        countries.map(el => 
-          <li key={el.name}>{el.name}</li>
-        )    
-      )
-    } else if (founded.length === 1) {
-      return(  
-        founded.map(el =>           
+        props.map(el =>           
           <div key={el.name}>
             <h2>{el.name}</h2>
             {console.log(el)}
@@ -27,15 +21,38 @@ const Show = ({ countries, founded }) => {
             </ul>
             <img src={el.flag} alt='flag'></img>
           </div>
+          )
         )
-      )
-    } else {
+      }
+
+    const showUnderTen = (props) => {  
+      return (props.map(el => 
+        <div  key={el.name}>
+          <li>{el.name}</li>
+          <button onClick={() => setButton(!button)}>Show</button>
+        </div>
+        )
+      )}
+
+      const aver = button === false 
+      ? showUnderTen(founded)
+      : showOnly(founded)
+
+    // Display part ***
+    if (founded.length > 10) {
+      return <div>please especify the country</div>
+    } else if (founded.length === 0) {
       return (
-        founded.map(el => 
+        countries.map(el => 
           <li key={el.name}>{el.name}</li>
-        )
+        )    
       )
-    }    
+    } else if (founded.length === 1) {
+      return showOnly(founded)
+    } else {
+      return aver
+    } 
   }
 
+  
 export default Show
