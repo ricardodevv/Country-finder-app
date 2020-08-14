@@ -1,6 +1,5 @@
 import React, { useState }from 'react'
 
-<<<<<<< HEAD
 const Show = ({ countries, founded }) => {
   const [ button, setButton ] = useState(false)   
 
@@ -11,34 +10,19 @@ const Show = ({ countries, founded }) => {
             <h2>{el.name}</h2>
             {console.log(el)}
             Capital: {el.capital} 
-=======
-const Show = ({ toShow, founded }) => {
-    console.log(toShow)
-    if (founded.length === 0) {
-      return ( 
-          <li>{toShow.name}</li>    
-      )
-    } else if (founded.length === 1) {
-      return (             
-          <div>
-            <h2>{toShow.name}</h2>
-            {console.log(toShow)}
-            Capital: {toShow.capital} 
->>>>>>> 639b70ac63bfd547ca656524cfbcbef6d10013f3
             <br/>
-            Population: {toShow.population}
+            Population: {el.population}
             <br/>
             <h3>Languages</h3>
-            <ul> 
-              {toShow.languages.map(lang =>
-                <li>{lang.name}</li>
-              )}
+            <ul>
+              {el.languages.map(lang => 
+                <li key={lang.name}>{lang.name}</li>
+              )} 
             </ul>
-            <img src={toShow.flag} alt='flag'></img>
+            <img src={el.flag} alt='flag'></img>
           </div>
           )
         )
-<<<<<<< HEAD
       }
 
     const showUnderTen = (props) => {  
@@ -68,13 +52,6 @@ const Show = ({ toShow, founded }) => {
     } else {
       return aver
     } 
-=======
-    } else {
-      return ( 
-          <li>{toShow.name}</li>
-        )
-    }    
->>>>>>> 639b70ac63bfd547ca656524cfbcbef6d10013f3
   }
 
 export default Show
