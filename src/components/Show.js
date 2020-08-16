@@ -9,10 +9,15 @@ const Show = ({ countries, founded }) => {
     setButton(!button)
   }
   
+  const removeElement = (props, container) => {
+    setContainer(container.filter(el => el !== props))
+    setButton(!button)
+  }
+
   const showOnly = (props) => {  
         return (props.map(el =>            
           <div key={el.name}>
-          <button onClick={() => setButton(!button)}>Show All</button>
+          <button onClick={() => removeElement(el, container)}>Show All</button>
             <h2>{el.name}</h2>
             {console.log(el)}
             Capital: {el.capital} 
