@@ -1,12 +1,18 @@
-import React, { useState }from 'react'
+import React, { useState } from 'react'
 
 const Show = ({ countries, founded }) => {
   const [ button, setButton ] = useState(false)   
-
-    const showOnly = (props) => {
-      return (
-        props.map(el =>           
+  const [ container, setContainer] = useState([])
+  
+  const isClicked = (props) => {  
+    setContainer(container.concat(props))
+    setButton(!button)
+  }
+  
+  const showOnly = (props) => {  
+        return (props.map(el =>            
           <div key={el.name}>
+          <button onClick={() => setButton(!button)}>Show All</button>
             <h2>{el.name}</h2>
             {console.log(el)}
             Capital: {el.capital} 
@@ -20,34 +26,34 @@ const Show = ({ countries, founded }) => {
               )} 
             </ul>
             <img src={el.flag} alt='flag'></img>
-          </div>
-          )
+          </div> 
         )
-      }
+      )
+    }
 
     const showUnderTen = (props) => {  
       return (props.map(el => 
-        <div  key={el.name}>
+        <div key={el.name}>
           <li>{el.name}</li>
-          <button onClick={() => setButton(!button)}>Show</button>
+          <button onClick={() => isClicked(el)}>Show</button>
         </div>
         )
       )}
-
+    
       const aver = button === false 
       ? showUnderTen(founded)
-      : showOnly(founded)
+      : showOnly(container)
 
     // Display part ***
-    if (founded.length > 10) {
+    if (button !== true && founded.length > 10) {
       return <div>please especify the country</div>
-    } else if (founded.length === 0) {
+    } else if (button !== true && founded.length === 0) {
       return (
         countries.map(el => 
           <li key={el.name}>{el.name}</li>
         )    
       )
-    } else if (founded.length === 1) {
+    } else if (button !== true && founded.length === 1) {
       return showOnly(founded)
     } else {
       return aver
